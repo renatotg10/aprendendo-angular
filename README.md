@@ -164,6 +164,15 @@ Construção consciente.
 
 ---
 
+## 📚 Documentação do Desenvolvimento
+
+A documentação detalhada de como este projeto está sendo desenvolvido, incluindo decisões técnicas e evolução por etapas, está disponível em:
+
+```bash
+documents/Projeto_Férias_Produtivas_Angular__Spring_Boot__PostgreSQL.md
+```
+
+---
 ## 👨‍💻 Autor
 
 Desenvolvido por Renato Gomes - renatotg10@gmail.com
