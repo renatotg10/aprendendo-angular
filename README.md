@@ -1,59 +1,169 @@
-# FeriasProdutivas
+# 🚀 Férias Produtivas — Angular + Spring Boot + PostgreSQL
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+Projeto criado durante 15 dias de estudo estruturado com foco em:
 
-## Development server
+- Angular 21 (frontend)
+- Spring Boot (backend)
+- PostgreSQL
+- Docker (etapa futura)
 
-To start a local development server, run:
+Este repositório contém a etapa inicial do frontend em Angular.
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📌 Objetivo do Projeto
 
-## Code scaffolding
+Construir uma aplicação completa do zero, seguindo boas práticas e evolução progressiva:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Estrutura base do Angular
+2. Rotas e navegação
+3. Formulários reativos com validação
+4. Service + dados em memória
+5. Integração com API
+6. Dockerização
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🛠 Tecnologias
 
-```bash
-ng generate --help
-```
+- Angular 21 (Standalone API)
+- TypeScript
+- Node.js
+- HTML5
+- CSS
 
-## Building
+---
 
-To build the project run:
+## ⚙️ Pré-requisitos
 
-```bash
-ng build
-```
+Antes de rodar o projeto, instale:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- Node.js (versão LTS recomendada)
+- Angular CLI 21
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Verifique as versões:
 
 ```bash
-ng e2e
+node -v
+npm -v
+ng version
+````
+
+Se não tiver Angular CLI:
+
+```bash
+npm install -g @angular/cli@21
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 📥 Como clonar e rodar o projeto
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 1️⃣ Clonar o repositório
+
+```bash
+git clone https://github.com/renatotg10/aprendendo-angular.git
+```
+
+### 2️⃣ Acessar a pasta do projeto
+
+```bash
+cd aprendendo-angular
+```
+
+### 3️⃣ Instalar dependências
+
+```bash
+npm install
+```
+
+### 4️⃣ Rodar a aplicação
+
+```bash
+ng serve -o
+```
+
+A aplicação estará disponível em:
+
+```
+http://localhost:4200
+```
+
+---
+
+## 🗂 Estrutura do Projeto
+
+```
+src/
+ ├── app/
+ │   ├── app.ts
+ │   ├── app.routes.ts
+ │   ├── app.config.ts
+ │   ├── features/
+ │   │   ├── home/
+ │   │   ├── list/
+ │   │   └── create/
+ │   └── models/
+ │       └── person.ts
+```
+
+---
+
+## 📅 Progresso Atual
+
+### ✅ Dia 1
+
+* Projeto Angular criado
+* Estrutura standalone compreendida
+* Primeiro componente (Home)
+* Rota inicial funcionando
+
+### ✅ Dia 2
+
+* Implementação de rotas
+* Navegação entre páginas
+* Estrutura inicial de layout
+
+### ✅ Dia 3
+
+* Formulário reativo
+* Validações com Angular 21 (@if)
+* Controle de submit
+* Debug de dados exibido em tela
+
+---
+
+## 📌 Próximos Passos
+
+* Criar Service com dados em memória
+* Implementar listagem dinâmica
+* Integração com backend
+* Dockerização completa
+
+---
+
+## 🎯 Objetivo Final
+
+Subir toda a stack com:
+
+```bash
+docker-compose up
+```
+
+E ter uma aplicação full stack funcional.
+
+---
+
+## 📚 Observações
+
+Projeto desenvolvido com foco em aprendizado estruturado, constância e evolução técnica progressiva.
+
+Sem over-engineering.
+Sem atalhos.
+Construção consciente.
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por Renato Gomes - renatotg10@gmail.com
