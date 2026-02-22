@@ -1,2 +1,70 @@
 <h1>Cadastro</h1>
-<p>Página de cadastro OK ✅</p>
+
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  style="display: grid; gap: 12px; max-width: 420px;"
+>
+  <!-- Nome -->
+  <div>
+    <label>Nome</label><br>
+    <input type="text" formControlName="name">
+
+    @if ((form.controls.name.touched || submitted) && form.controls.name.invalid) {
+      <div style="color: #b00020;">
+        @if (form.controls.name.errors?.['required']) {
+          <small>Nome é obrigatório.</small>
+        }
+        @if (form.controls.name.errors?.['minlength']) {
+          <small>Nome deve ter no mínimo 3 letras.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label>E-mail</label><br>
+    <input type="email" formControlName="email">
+
+    @if ((form.controls.email.touched || submitted) && form.controls.email.invalid) {
+      <div style="color: #b00020;">
+        @if (form.controls.email.errors?.['required']) {
+          <small>E-mail é obrigatório.</small>
+        }
+        @if (form.controls.email.errors?.['email']) {
+          <small>E-mail inválido.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Idade -->
+  <div>
+    <label>Idade</label><br>
+    <input type="number" formControlName="age">
+
+    @if ((form.controls.age.touched || submitted) && form.controls.age.invalid) {
+      <div style="color: #b00020;">
+        @if (form.controls.age.errors?.['required']) {
+          <small>Idade é obrigatória.</small>
+        }
+        @if (form.controls.age.errors?.['min']) {
+          <small>Idade não pode ser negativa.</small>
+        }
+        @if (form.controls.age.errors?.['max']) {
+          <small>Idade muito alta.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <button type="submit">
+    Enviar
+  </button>
+</form>
+
+<hr>
+
+<h3>Debug</h3>
+<pre>{{ form.value | json }}</pre>
