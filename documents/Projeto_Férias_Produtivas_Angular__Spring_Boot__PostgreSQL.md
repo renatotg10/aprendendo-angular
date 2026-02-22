@@ -410,7 +410,7 @@ ng g interface models/person
 
 Substitua o conteúdo do arquivo por:
 
-```
+```tsx
 exportinterfacePerson {
   name:string;
   email:string;
@@ -430,7 +430,7 @@ Abra:
 
 Substitua por isto (ou ajuste se estiver diferente):
 
-```
+```tsx
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
@@ -484,7 +484,7 @@ Abra:
 
 Coloque:
 
-```
+```html
 <h1>Cadastro</h1>
 
 <form
