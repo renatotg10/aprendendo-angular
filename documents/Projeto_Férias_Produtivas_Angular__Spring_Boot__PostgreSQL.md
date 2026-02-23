@@ -561,7 +561,7 @@ Coloque:
 
 ### 4) Testar
 
-1. Rode:
+Rode:
 
 ```
 ng serve-o
@@ -595,3 +595,242 @@ Você conclui o dia quando:
 ✔ imprime os dados no console quando válido
 
 ---
+
+# 🟢 Dia 4 — Service + Dados em memória
+
+## 🎯 Objetivo do dia
+
+Você vai:
+
+- Criar um **Service**
+- Manter um **array em memória**
+- Cadastrar pessoas no array
+- Listar na tela
+- Usar `@for` (Angular moderno)
+
+No final do dia:
+
+👉 Você cadastra na página `/create`
+
+👉 Vai para `/list`
+
+👉 E vê os dados aparecendo
+
+Sem backend ainda.
+
+---
+
+# 🧩 1️⃣ Criar o Service
+
+No terminal:
+
+```
+ng g s services/person
+```
+
+Isso cria:
+
+```
+src/app/services/person.ts
+```
+
+---
+
+## 📁 Ajuste o conteúdo do service
+
+`src/app/services/person.ts`
+
+```tsx
+import { Injectable } from '@angular/core';
+import { Person } from '../models/person';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PersonService {
+  
+  private persons: Person[] = [];
+
+  getAll(): Person[] {
+    return this.persons;
+  }
+
+  add(person: Person): void {
+    this.persons.push(person);
+  }
+
+}
+```
+
+✔ `providedIn: 'root'` → singleton global
+
+✔ array em memória
+
+✔ métodos simples
+
+---
+
+# 🧩 2️⃣ Conectar o Create ao Service
+
+Abra:
+
+`src/app/features/create/create.ts`
+
+Atualize:
+
+```tsx
+import { Component } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
+import { PersonService } from '../../services/person';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-create',
+  standalone: true,
+  imports: [ReactiveFormsModule, JsonPipe],
+  templateUrl: './create.html',
+  styleUrl: './create.css',
+})
+export class Create {
+  submitted = false;
+  form;
+
+  constructor(
+    private fb: FormBuilder,
+    private personService: PersonService,
+    private router: Router
+  ) {
+    this.form = this.fb.nonNullable.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      age: [18, [Validators.required, Validators.min(0), Validators.max(120)]],
+    });
+  }
+
+  submit(): void {
+    this.submitted = true;
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.personService.add(this.form.getRawValue());
+
+    this.form.reset({ name: '', email: '', age: 18});
+    this.submitted = false;
+
+    this.router.navigate(['/list']);
+  }
+}
+```
+
+---
+
+## ⚠️ Importante: habilitar Router no componente
+
+Abra `create.ts` e adicione no `imports`:
+
+```
+import {Router }from'@angular/router';
+```
+
+⚠️ E no `app.ts`, garanta que RouterOutlet e RouterLink estejam importados.
+
+---
+
+# 🧩 3️⃣ Implementar Listagem
+
+Abra:
+
+`src/app/features/list/list.ts`
+
+Substitua por:
+
+```tsx
+import { Component } from '@angular/core';
+import { PersonService } from '../../services/person';
+import { Person } from '../../models/person';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-list',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './list.html',
+  styleUrl: './list.css',
+})
+export class List {
+
+  persons: Person[] = [];
+
+  constructor(private personService: PersonService) {
+    this.persons = this.personService.getAll();
+  }
+
+}
+```
+
+---
+
+# 🧩 4️⃣ HTML da Listagem (Angular moderno)
+
+`src/app/features/list/list.html`
+
+```html
+<h1>Listagem</h1>
+
+@if (persons.length === 0) {
+    <p>Nenhum registro cadastrado.</p>
+} @else {
+    <u>
+        @for (person of persons; track person) {
+            <li>
+                {{ person.name }} - {{ person.email }} - {{ person.age }} anos
+            </li>
+        }
+    </u>
+}
+```
+
+🔥 Aqui você usa `@for` em vez de `*ngFor`.
+
+---
+
+# 🧪 Teste agora
+
+Rode:
+
+```
+ng serve-o
+```
+
+1. Vá para `/create`
+2. Cadastre uma pessoa
+3. Clique enviar
+4. Você deve ir para `/list`
+5. A pessoa aparece listada
+
+Se funcionar:
+
+🎉 Dia 4 concluído.
+
+---
+
+# 🧠 O que você acabou de aprender
+
+- Service singleton
+- Estado em memória
+- Injeção de dependência
+- Navegação programática
+- @for moderno
+- Comunicação entre páginas
+
+Agora começa a ficar interessante.
+
+---
+
+# 🧭 Referências
+
+[ChatGPT - 15 Dias Férias Produtivas Angular](https://chatgpt.com/share/699cdab4-f424-8011-8b61-accbd124b616)

@@ -1,2 +1,13 @@
 <h1>Listagem</h1>
-<p>Página de listagem OK ✅</p>
+
+@if (persons.length === 0) {
+    <p>Nenhum registro cadastrado.</p>
+} @else {
+    <u>
+        @for (person of persons; track person) {
+            <li>
+                {{ person.name }} - {{ person.email }} - {{ person.age }} anos
+            </li>
+        }
+    </u>
+}

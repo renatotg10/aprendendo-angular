@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { PersonService } from '../../services/person';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -13,7 +15,11 @@ export class Create {
   submitted = false;
   form;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private personService: PersonService,
+    private router: Router
+  ) {
     this.form = this.fb.nonNullable.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -29,6 +35,11 @@ export class Create {
       return;
     }
 
-    console.log('FORM OK ✅', this.form.getRawValue());
+    this.personService.add(this.form.getRawValue());
+
+    this.form.reset({ name: '', email: '', age: 18});
+    this.submitted = false;
+
+    this.router.navigate(['/list']);
   }
 }

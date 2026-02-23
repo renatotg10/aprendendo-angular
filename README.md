@@ -131,6 +131,17 @@ src/
 * Controle de submit
 * Debug de dados exibido em tela
 
+### ✅ Dia 4
+
+* Criação do PersonService (singleton global)
+* Implementação de armazenamento em memória (array local)
+* Método add() para cadastro de registros
+* Método getAll() para listagem
+* Integração do formulário com o service
+* Navegação programática após cadastro
+* Implementação da listagem utilizando @for (Angular moderno)
+* Exibição condicional com @if quando não há registros
+
 ---
 
 ## 📌 Próximos Passos
