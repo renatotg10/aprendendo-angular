@@ -144,6 +144,19 @@ src/
 
 ---
 
+### ✅ Dia 5
+
+* Implementação de edição de registros (Update)
+* Reutilização do componente de cadastro para edição
+* Parametrização de rota (create/:id)
+* Uso do ActivatedRoute para captura de parâmetros
+* Implementação do método update() no service
+* Carregamento de dados no formulário com patchValue()
+* Navegação entre listagem e edição
+* Evolução do CRUD no frontend (Create + Read + Update)
+
+---
+
 ## 📌 Próximos Passos
 
 * Criar Service com dados em memória
