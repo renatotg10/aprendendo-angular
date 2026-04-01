@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { PersonService } from '../../services/person';
 import { Person } from '../../models/person';
-import { CommonModule } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [RouterLink],
   templateUrl: './list.html',
   styleUrl: './list.css',
 })

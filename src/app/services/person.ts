@@ -12,8 +12,16 @@ export class PersonService {
     return this.persons;
   }
 
+  getByIndex(index: number): Person | undefined {
+    return this.persons[index];
+  }
+
   add(person: Person): void {
     this.persons.push(person);
+  }
+
+  update(index: number, person: Person): void {
+    this.persons[index] = person;
   }
 
 }

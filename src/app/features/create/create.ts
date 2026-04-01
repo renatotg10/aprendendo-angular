@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { PersonService } from '../../services/person';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -14,17 +14,31 @@ import { Router } from '@angular/router';
 export class Create {
   submitted = false;
   form;
+  editingIndex: number | null = null;
 
   constructor(
     private fb: FormBuilder,
     private personService: PersonService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.form = this.fb.nonNullable.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       age: [18, [Validators.required, Validators.min(0), Validators.max(120)]],
     });
+
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id !== null) {
+      this.editingIndex = Number(id);
+
+      const person = this.personService.getByIndex(this.editingIndex);
+
+      if (person) {
+        this.form.patchValue(person);
+      }
+    }
   }
 
   submit(): void {
@@ -35,7 +49,11 @@ export class Create {
       return;
     }
 
-    this.personService.add(this.form.getRawValue());
+    if (this.editingIndex !== null) {
+      this.personService.update(this.editingIndex, this.form.getRawValue());
+    } else {
+      this.personService.add(this.form.getRawValue());
+    }    
 
     this.form.reset({ name: '', email: '', age: 18});
     this.submitted = false;
