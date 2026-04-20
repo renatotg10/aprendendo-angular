@@ -8,7 +8,7 @@ export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'list', component: ListComponent },
     { path: 'create', component: CreateComponent },
-    { path: 'create/:id', component: CreateComponent },
+    { path: 'edit/:id', component: CreateComponent },
 
     // fallback (se digitar a rota errada)
     { path: '**', redirectTo: '' },

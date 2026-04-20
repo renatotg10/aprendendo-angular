@@ -16,8 +16,24 @@ export class ListComponent {
     message: string | null = null;
 
   constructor(private personService: PersonService) {
-    this.persons = this.personService.getAll();
+    this.loadPersons();    
     this.message = window.history.state?.message || null;
+  }
+
+  loadPersons(): void {
+    this.persons = this.personService.getAll();
+  }
+
+  deletePerson(index: number): void {
+    const confirmDelete = confirm('Deseja realmente excluir este registro?');
+
+    if (!confirmDelete) {
+      return;
+    }
+
+    this.personService.delete(index);
+    this.loadPersons();
+    this.message = 'Registro excluído com sucesso!';
   }
 
 }

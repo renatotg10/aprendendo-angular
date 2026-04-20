@@ -24,4 +24,8 @@ export class PersonService {
     this.persons[index] = person;
   }
 
+  delete(index: number): void {
+    this.persons.splice(index, 1);
+  }
+
 }

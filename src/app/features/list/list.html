@@ -19,6 +19,7 @@
 
         <div>
           <button [routerLink]="['/edit', i]">Editar</button>
+          <button type="button" (click)="deletePerson(i)">Excluir</button>
         </div>
       </li>
     }
