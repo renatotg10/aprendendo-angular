@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './create.html',
   styleUrl: './create.css',
 })
-export class Create {
+export class CreateComponent {
   submitted = false;
   form;
   editingIndex: number | null = null;
@@ -53,11 +53,13 @@ export class Create {
       this.personService.update(this.editingIndex, this.form.getRawValue());
     } else {
       this.personService.add(this.form.getRawValue());
-    }    
+    }
 
-    this.form.reset({ name: '', email: '', age: 18});
+    this.form.reset({ name: '', email: '', age: 18 });
     this.submitted = false;
 
-    this.router.navigate(['/list']);
+    this.router.navigate(['/list'], {
+      state: { message: 'Cadastro realizado com sucesso!' }
+    });
   }
 }

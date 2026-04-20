@@ -1,15 +1,26 @@
+@if (message) {
+  <div style="background: #d4edda; padding: 10px; margin-bottom: 10px">
+    {{ message }}
+  </div>
+}
+
 <h1>Listagem</h1>
 
 @if (persons.length === 0) {
-    <p>Nenhum registro cadastrado.</p>
+  <p>Nenhum registro cadastrado.</p>
 } @else {
-    <u>
-        @for (person of persons; track person) {
-            <li>
-                {{ person.name }} - {{ person.email }} - {{ person.age }} anos
+  <ul>
+    @for (person of persons; track person; let i = $index) {
+      <li>
+        <strong>{{ person.name }}</strong
+        ><br />
+        {{ person.email }}<br />
+        {{ person.age }} anos
 
-                <a [routerLink]="['/create', $index]">Editar</a>
-            </li>
-        }
-    </u>
+        <div>
+          <button [routerLink]="['/edit', i]">Editar</button>
+        </div>
+      </li>
+    }
+  </ul>
 }

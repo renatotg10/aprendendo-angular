@@ -1,17 +1,13 @@
 <h1>Cadastro</h1>
 
-<form
-  [formGroup]="form"
-  (ngSubmit)="submit()"
-  style="display: grid; gap: 12px; max-width: 420px;"
->
+<form [formGroup]="form" (ngSubmit)="submit()" style="display: grid; gap: 12px; max-width: 420px">
   <!-- Nome -->
   <div>
-    <label>Nome</label><br>
-    <input type="text" formControlName="name">
+    <label>Nome</label><br />
+    <input type="text" formControlName="name" />
 
     @if ((form.controls.name.touched || submitted) && form.controls.name.invalid) {
-      <div style="color: #b00020;">
+      <div style="color: #b00020">
         @if (form.controls.name.errors?.['required']) {
           <small>Nome é obrigatório.</small>
         }
@@ -24,11 +20,11 @@
 
   <!-- Email -->
   <div>
-    <label>E-mail</label><br>
-    <input type="email" formControlName="email">
+    <label>E-mail</label><br />
+    <input type="email" formControlName="email" />
 
     @if ((form.controls.email.touched || submitted) && form.controls.email.invalid) {
-      <div style="color: #b00020;">
+      <div style="color: #b00020">
         @if (form.controls.email.errors?.['required']) {
           <small>E-mail é obrigatório.</small>
         }
@@ -41,11 +37,11 @@
 
   <!-- Idade -->
   <div>
-    <label>Idade</label><br>
-    <input type="number" formControlName="age">
+    <label>Idade</label><br />
+    <input type="number" formControlName="age" />
 
     @if ((form.controls.age.touched || submitted) && form.controls.age.invalid) {
-      <div style="color: #b00020;">
+      <div style="color: #b00020">
         @if (form.controls.age.errors?.['required']) {
           <small>Idade é obrigatória.</small>
         }
@@ -59,12 +55,10 @@
     }
   </div>
 
-  <button type="submit">
-    Enviar
-  </button>
+  <button type="submit" [disabled]="form.invalid">Enviar</button>
 </form>
 
-<hr>
+<hr />
 
 <h3>Debug</h3>
 <pre>{{ form.value | json }}</pre>
