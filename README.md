@@ -157,6 +157,18 @@ src/
 
 ---
 
+### ✅ Dia 6
+
+* Refatoração e organização da estrutura do projeto
+* Padronização de componentes e limpeza de código
+* Ajustes de configuração do TypeScript (rootDir)
+* Implementação de feedback de navegação (mensagem de sucesso)
+* Correção de roteamento para edição de registros
+* Implementação da operação de exclusão (Delete)
+* Conclusão do CRUD frontend com gerenciamento em memória
+
+---
+
 ## 📌 Próximos Passos
 
 * Criar Service com dados em memória
